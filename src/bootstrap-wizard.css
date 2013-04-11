@@ -1,5 +1,7 @@
 .wizard {
 	display:none;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 .wizard-modal form {
 	margin:0;
@@ -41,6 +43,10 @@
 	display:none;
 	border-top: 1px solid #EEE;
 	margin-right: 5px;
+}
+
+.wizard-nav-link .number {
+	margin-right: 10px;
 }
 
 .wizard-nav-link .icon-chevron-right {

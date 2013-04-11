@@ -93,16 +93,13 @@
 			return this;
 		},
 
-		// <li><a href="#" data-navindex="0">
-		//     <i class="icon-chevron-right"></i>
-		//     Name &amp; FQDN
-		// </a></li>
 		_createNavElement: function(name, i) {
 			var li = $('<li class="wizard-nav-item"></li>');
 			var a = $('<a class="wizard-nav-link"></a>');
 			a.data("navindex", i);
 			li.append(a);
-			a.append('<i class="icon-chevron-right"></i>')
+			a.append('<img src="../src/images/' + (i + 1) + '.png" class="number" />');
+			a.append('<i class="icon-chevron-right"></i>');
 			a.append(name);
 			return li;
 		},
@@ -346,9 +343,8 @@
 
 	Wizard = function(markup, args) {
 		var wizard_template = [
-			'<div class="modal hide wizard-modal" role="dialog">',
-				'<div class="wizard-modal-header modal-header">',
-					'<button class="wizard-close close" type="button">x</button>',
+			'<div class="wizard">',
+				'<div class="wizard-header">',
 					'<h3 class="wizard-title"></h3>',
 					'<span class="wizard-subtitle"></span>',
 				'</div>',
@@ -402,7 +398,6 @@
 		this.el.find(".wizard-card-container")
 			.append(this.markup.find(".wizard-card"))
 			.append(this.submitCards);
-		$("body").append(this.el);
 
 		this.closeButton = this.el.find("button.wizard-close");
 		this.footer = this.el.find(".wizard-modal-footer");
@@ -429,31 +424,6 @@
 		this.backButton.text(this.args.buttons.backText);
 		this.nextButton.text(this.args.buttons.nextText);
 
-
-
-		/*
-		 * adjust the height of the modal, and everything associated with
-		 * adjusting the height
-		 */
-		var baseHeight = 360;
-		var navHeight = baseHeight + this.args.increaseHeight;
-
-		this.el.find(".wizard-nav-container").css("height", navHeight);
-		this.el.find(".wizard-steps").css("height", (navHeight+65)+"px");
-		this.el.find(".wizard-card").css("height", (navHeight-60)+"px");
-		this.submitCards.css("height", (navHeight-60)+"px");
-
-		this.el.css("margin-top", -(this.el.height() / 2));
-
-
-		/*
-		 * adjust the width of the modal
-		 */
-		this.el.css("width", this.args.width);
-		this.el.css("margin-left", -(this.args.width / 2));
-
-
-
 		/*
 		 * set up slimScroll for our nav, if slimScroll is installed
 		 */
@@ -470,15 +440,6 @@
 			this.el.find(".wizard-nav-container").slimScroll(slimScrollArgs);
 		}
 
-		/*
-		 * if the close X is clicked, reset the wizard
-		 */
-		var self = this;
-		this.closeButton.click(function() {
-			self.reset();
-			self.close();
-		})
-
 		this.el.find(".wizard-steps").on(
 			"click", "li.already-visited a.wizard-nav-link", this,
 			function(event) {
@@ -488,6 +449,8 @@
 
 		var title = this.markup.children("h1").first();
 		if (title.length) {this.setTitle(title.text());}
+		
+		this.markup.html('').append(this.el);
 
 		this.on("submit", this._defaultSubmit);
 	}
@@ -581,13 +544,7 @@
 
 		hide: function() {
 			this.log("hiding");
-			this.el.modal("hide");
-			return this;
-		},
-
-		close: function() {
-			this.log("closing");
-			this.el.modal("hide");
+			this.el.hide();
 			return this;
 		},
 
@@ -598,7 +555,7 @@
 				this.setCard(0);
 				this._firstShow = false;
 			}
-			this.el.modal();
+			this.el.show();
 			return this;
 		},
 

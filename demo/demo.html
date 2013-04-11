@@ -36,19 +36,7 @@
 
 	<body style="padding:30px;">
 
-		<div style="margin-bottom:20px;">
-			<a href="http://panopta.com" target="_blank">
-				<img style="width:220px;" src="https://my.panopta.com/static/images/Panopta-Logo.png">
-			</a>
-		</div>
-
-		<a class="btn" href="http://www.panopta.com/?p=3481">Back to docs</a>
-		<button id="open-wizard" class="btn btn-primary">Open wizard</button>
-
-
-
-
-		<div class="wizard" id="wizard-demo">
+		<div id="wizard-demo">
 			<h1>Create Server</h1>
 
 			<div class="wizard-card" data-onValidated="setServerName" data-cardname="name">
@@ -428,10 +416,6 @@ $(function() {
 
 	$(".wizard-group-list").click(function() {
 		alert("Disabled for demo.");
-	});
-
-	$("#open-wizard").click(function() {
-		wizard.show();
 	});
 
 	wizard.show();
