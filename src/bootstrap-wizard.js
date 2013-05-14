@@ -327,12 +327,12 @@
 		},
 
 		log: function() {
-			if (!window.console || !$.fn.wizard.logging) {return;}
+			if (!window.console || typeof window.console.log !== 'function' || !$.fn.wizard.logging) {return;}
 			var prepend = "card '"+this.name+"': ";
 			var args = [prepend];
 			args.push.apply(args, arguments);
 
-			console.log.apply(console, args);
+			console. (console, args);
 		},
 
 		isActive: function() {
@@ -610,7 +610,7 @@
 		},
 
 		log: function() {
-			if (!window.console || !$.fn.wizard.logging) {return;}
+			if (!window.console || typeof window.console.log !== 'function' || !$.fn.wizard.logging) {return;}
 			var prepend = "wizard "+this.el.id+": ";
 			var args = [prepend];
 			args.push.apply(args, arguments);
