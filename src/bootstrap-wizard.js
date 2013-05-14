@@ -337,7 +337,7 @@
 
 		isActive: function() {
 			return this.nav.hasClass("active");
-		},
+		}
 	};
 
 
@@ -386,7 +386,7 @@
 				nextText: "Next",
 				backText: "Back",
 				submitText: "Submit",
-				submittingText: "Submitting...",
+				submittingText: "Submitting..."
 			}
 		};
 		$.extend(this.args, args || {});
@@ -434,7 +434,7 @@
 				size: "8px",
 				distance: "5px",
 				railVisible: true,
-				disableFadeOut: true,
+				disableFadeOut: true
 			};
 			$.extend(slimScrollArgs, this.args.slimScroll || {});
 			this.el.find(".wizard-nav-container").slimScroll(slimScrollArgs);
@@ -995,7 +995,7 @@
 		    	error: function() {
 		    		wizard.submitFailure();
 		    		wizard.hideButtons();
-		    	},
+		    	}
 	    	});
 		}
 
