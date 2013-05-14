@@ -331,8 +331,7 @@
 			var prepend = "card '"+this.name+"': ";
 			var args = [prepend];
 			args.push.apply(args, arguments);
-
-			console. (console, args);
+			console.log.apply(console, args);
 		},
 
 		isActive: function() {
